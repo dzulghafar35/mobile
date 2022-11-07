@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'homestay.dart';
+import 'detail_screen.dart';
 
 class CheckOutPage extends StatefulWidget {
   @override
@@ -39,13 +40,15 @@ class _CheckOutPageState extends State<CheckOutPage> {
             children: <Widget>[
               Expanded(
                 child: Container(
-                  child: ListView(
-                    children: <Widget>[
-                      selectedAddressSection(),
-                      checkoutItem(),
-                      priceSection()
-                    ],
-                  ),
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(7.0),
+                  itemCount: widget.Homestay.price.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final ingredient = widget.recipe.ingredients[index];
+                    return Text('${ingredient.quantity * _sliderVal} '
+                        '${ingredient.measure} '
+                        '${ingredient.name}');
+                  }),
                 ),
                 flex: 90,
               ),
@@ -291,8 +294,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
               ),
               createPriceItem("Total ", "0.00", Colors.grey.shade700),
               createPriceItem("Discount", "0.00", Colors.teal.shade300),
-              createPriceItem("Tax", "0.00", Colors.grey.shade700),
-              createPriceItem("Order Total", "0.00", Colors.grey.shade700),
               SizedBox(
                 height: 8,
               ),
