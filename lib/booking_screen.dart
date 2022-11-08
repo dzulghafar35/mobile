@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'homestay.dart';
 import 'detail_screen.dart';
 
-class CheckOutPage extends StatefulWidget {
+class bookingScreen extends StatefulWidget {
+  final Homestay homestay;
+  const bookingScreen({Key? key, required this.homestay}) : super(key: key);
   @override
-  _CheckOutPageState createState() => _CheckOutPageState();
+  _bookingScreenState createState() {
+    return _bookingScreenState();
+  }
 }
 
-class _CheckOutPageState extends State<CheckOutPage> {
+class _bookingScreenState extends State<bookingScreen> {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   double totalPrice = 0;
   double discountPrice = 0;
   int count = 1;
+  int _sliderVal = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +44,13 @@ class _CheckOutPageState extends State<CheckOutPage> {
           return Column(
             children: <Widget>[
               Expanded(
-                child: Container(
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(7.0),
-                  itemCount: widget.Homestay.price.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final ingredient = widget.recipe.ingredients[index];
-                    return Text('${ingredient.quantity * _sliderVal} '
-                        '${ingredient.measure} '
-                        '${ingredient.name}');
-                  }),
-                ),
+                // ignore: sort_child_properties_last
+                child: ListView.builder(
+                    padding: const EdgeInsets.all(7.0),
+                    itemCount: widget.homestay.Detail.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final Details = widget.homestay.Detail[index];
+                    }),
                 flex: 90,
               ),
               Expanded(

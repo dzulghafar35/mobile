@@ -26,7 +26,7 @@ class DetailScreen extends StatelessWidget {
                 minWidth: 60,
                 onPressed: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => CheckOutPage()));
+                      MaterialPageRoute(builder: (context) => bookingScreen()));
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
